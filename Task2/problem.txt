@@ -1,0 +1,129 @@
+Problem Statement
+You are building a Node.js application to process orders for a pizza restaurant. The restaurant has a menu of different types of pizzas, each with a list of available toppings. Customers can place orders for one or more pizzas, specifying the pizza type and toppings they want.
+
+You should implement the following endpoints:
+
+GET /menu: Returns the menu of available pizzas and toppings.
+POST /orders: Creates a new order with the specified pizzas and toppings.
+GET /orders: Returns a list of all orders.
+GET /orders/:id: Returns the order with the specified ID.
+
+You should use the following data model:
+Pizza {
+  id: string,
+  name: string,
+  toppings: string[],
+  price: number,
+}
+
+Order {
+  id: string,
+  pizzas: {
+    pizza: Pizza,
+    toppings: string[]
+  }[],
+  total: number,
+}
+
+
+You can use any Node.js framework or libraries you like to implement this API, but make sure to include tests for each endpoint.
+
+Requirements
+Your code should be written in Node.js.
+You should use a database to store pizzas and orders (e.g. MongoDB, PostgreSQL, etc.).
+You should write tests for each endpoint.
+You should handle errors and return appropriate error responses.
+You should use best practices for RESTful API design (e.g. HTTP status codes, meaningful endpoint names, etc.).
+You should include documentation for your API endpoints.
+Example
+Here's an example of how the API should work:
+
+// Get the menu
+GET /menu
+[
+  {
+    "id": "1",
+    "name": "Margherita",
+    "toppings": ["Tomato", "Mozzarella"],
+    "price": 8.99
+  },
+  {
+    "id": "2",
+    "name": "Pepperoni",
+    "toppings": ["Tomato", "Mozzarella", "Pepperoni"],
+    "price": 10.99
+  },
+  // ...
+]
+
+// Place an order
+POST /orders
+{
+  "pizzas": [
+    {
+      "pizzaId": "1",
+      "toppings": ["Olives", "Mushrooms"]
+    },
+    {
+      "pizzaId": "2",
+      "toppings": ["Extra Cheese"]
+    }
+  ]
+}
+
+// Get all orders
+GET /orders
+[
+  {
+    "id": "1",
+    "pizzas": [
+      {
+        "pizza": {
+          "id": "1",
+          "name": "Margherita",
+          "toppings": ["Tomato", "Mozzarella"],
+          "price": 8.99
+        },
+        "toppings": ["Olives", "Mushrooms"]
+      },
+      {
+        "pizza": {
+          "id": "2",
+          "name": "Pepperoni",
+          "toppings": ["Tomato", "Mozzarella", "Pepperoni"],
+          "price": 10.99
+        },
+        "toppings": ["Extra Cheese"]
+      }
+    ],
+    "total": 24.97
+  },
+  // ...
+]
+
+// Get an order by ID
+GET /orders/1
+{
+  "id": "1",
+  "pizzas": [
+    {
+      "pizza": {
+        "id": "1",
+        "name": "Margherita",
+        "toppings": ["Tomato", "Mozzarella"],
+        "price": 8.99
+      },
+  "toppings": ["Olives", "Mushrooms"]
+},
+{
+  "pizza": {
+    "id": "2",
+    "name": "Pepperoni",
+    "toppings": ["Tomato", "Mozzarella", "Pepperoni"],
+    "price": 10.99
+  },
+  "toppings": ["Extra Cheese"]
+}
+],
+"total": 24.97
+}

@@ -1,0 +1,62 @@
+Problem Statement
+You are building a RESTful API to manage a list of tasks. Each task has a title and a description. Your API should allow users to create, read, update, and delete tasks.
+
+You should implement the following endpoints:
+
+GET /tasks: Returns a list of all tasks.
+POST /tasks: Creates a new task.
+GET /tasks/:id: Returns the task with the specified ID.
+PUT /tasks/:id: Updates the task with the specified ID.
+DELETE /tasks/:id: Deletes the task with the specified ID.
+You should use the following data model:
+Task {
+  id: string,
+  title: string,
+  description: string,
+}
+
+You can use any Node.js framework or libraries you like to implement this API, but make sure to include tests for each endpoint.
+
+Requirements
+Your code should be written in Node.js.
+You should use a database to store tasks (e.g. MongoDB, PostgreSQL, etc.).
+You should write tests for each endpoint.
+You should handle errors and return appropriate error responses.
+You should use best practices for RESTful API design (e.g. HTTP status codes, meaningful endpoint names, etc.).
+You should include documentation for your API endpoints.
+
+Working
+// Create a new task
+POST /tasks
+{
+  "title": "Task 1",
+  "description": "This is task 1"
+}
+
+// Get all tasks
+GET /tasks
+[
+  {
+    "id": "1",
+    "title": "Task 1",
+    "description": "This is task 1"
+  }
+]
+
+// Get a task by ID
+GET /tasks/1
+{
+  "id": "1",
+  "title": "Task 1",
+  "description": "This is task 1"
+}
+
+// Update a task by ID
+PUT /tasks/1
+{
+  "title": "Task 1 updated",
+  "description": "This is task 1 updated"
+}
+
+// Delete a task by ID
+DELETE /tasks/1

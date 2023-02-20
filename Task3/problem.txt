@@ -1,0 +1,307 @@
+
+
+Problem Statement
+You are building a Node.js application for a travel agency that needs to manage bookings for flights and hotels. Customers can book flights and hotels separately or together as a package deal.
+
+You should implement the following endpoints:
+
+GET /flights: Returns a list of available flights.
+POST /flights/book: Creates a new booking for a flight.
+GET /flights/bookings: Returns a list of all flight bookings.
+GET /flights/bookings/:id: Returns the flight booking with the specified ID.
+GET /hotels: Returns a list of available hotels.
+POST /hotels/book: Creates a new booking for a hotel.
+GET /hotels/bookings: Returns a list of all hotel bookings.
+GET /hotels/bookings/:id: Returns the hotel booking with the specified ID.
+POST /packages/book: Creates a new booking for a package deal (flight + hotel).
+GET /packages/bookings: Returns a list of all package deal bookings.
+GET /packages/bookings/:id: Returns the package deal booking with the specified ID.
+You should use the following data model:
+Flight {
+  id: string,
+  airline: string,
+  departureAirport: string,
+  arrivalAirport: string,
+  departureTime: string,
+  arrivalTime: string,
+  price: number,
+}
+
+Hotel {
+  id: string,
+  name: string,
+  city: string,
+  address: string,
+  price: number,
+}
+
+Booking {
+  id: string,
+  customerName: string,
+  customerEmail: string,
+  flight: Flight,
+  hotel: Hotel,
+  totalPrice: number,
+}
+
+You can use any Node.js framework or libraries you like to implement this API, but make sure to include tests for each endpoint.
+
+Requirements
+Your code should be written in Node.js.
+You should use a database to store flights, hotels, and bookings (e.g. MongoDB, PostgreSQL, etc.).
+You should write tests for each endpoint.
+You should handle errors and return appropriate error responses.
+You should use best practices for RESTful API design (e.g. HTTP status codes, meaningful endpoint names, etc.).
+You should include documentation for your API endpoints.
+Example
+Here's an example of how the API should work:
+// Get all flights
+GET /flights
+[
+  {
+    "id": "1",
+    "airline": "Delta",
+    "departureAirport": "JFK",
+    "arrivalAirport": "LAX",
+    "departureTime": "2023-04-11T12:00:00.000Z",
+    "arrivalTime": "2023-04-11T15:00:00.000Z",
+    "price": 350
+  },
+  {
+    "id": "2",
+    "airline": "American",
+    "departureAirport": "LAX",
+    "arrivalAirport": "JFK",
+    "departureTime": "2023-04-15T12:00:00.000Z",
+    "arrivalTime": "2023-04-15T15:00:00.000Z",
+    "price": 450
+  },
+  // ...
+]
+
+// Book a flight
+POST /flights/book
+{
+  "customerName": "John Doe",
+  "customerEmail": "john@example.com",
+  "flightId": "1"
+}
+
+// Get all flight bookings
+GET /flights/bookings
+[
+  {
+    "id": "1",
+    "customerName": "John Doe
+"customerEmail": "john@example.com",
+"flight": {
+"id": "1",
+"airline": "Delta",
+"departureAirport": "JFK",
+"arrivalAirport": "LAX",
+"departureTime": "2023-04-11T12:00:00.000Z",
+"arrivalTime": "2023-04-11T15:00:00.000Z",
+"price": 350
+},
+"totalPrice": 350
+},
+{
+"id": "2",
+"customerName": "Jane Doe",
+"customerEmail": "jane@example.com",
+"flight": {
+"id": "2",
+"airline": "American",
+"departureAirport": "LAX",
+"arrivalAirport": "JFK",
+"departureTime": "2023-04-15T12:00:00.000Z",
+"arrivalTime": "2023-04-15T15:00:00.000Z",
+"price": 450
+},
+"totalPrice": 450
+},
+// ...
+]
+
+// Get a flight booking by ID
+GET /flights/bookings/1
+{
+"id": "1",
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"flight": {
+"id": "1",
+"airline": "Delta",
+"departureAirport": "JFK",
+"arrivalAirport": "LAX",
+"departureTime": "2023-04-11T12:00:00.000Z",
+"arrivalTime": "2023-04-11T15:00:00.000Z",
+"price": 350
+},
+"totalPrice": 350
+}
+
+// Get all hotels
+GET /hotels
+[
+{
+"id": "1",
+"name": "Hilton",
+"city": "New York",
+"address": "123 Main St",
+"price": 150
+},
+{
+"id": "2",
+"name": "Marriott",
+"city": "Los Angeles",
+"address": "456 Elm St",
+"price": 200
+},
+// ...
+]
+
+// Book a hotel
+POST /hotels/book
+{
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"hotelId": "1"
+}
+
+// Get all hotel bookings
+GET /hotels/bookings
+[
+{
+"id": "1",
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"hotel": {
+"id": "1",
+"name": "Hilton",
+"city": "New York",
+"address": "123 Main St",
+"price": 150
+},
+"totalPrice": 150
+},
+{
+"id": "2",
+"customerName": "Jane Doe",
+"customerEmail": "jane@example.com",
+"hotel": {
+"id": "2",
+"name": "Marriott",
+"city": "Los Angeles",
+"address": "456 Elm St",
+"price": 200
+},
+"totalPrice": 200
+},
+// ...
+]
+
+// Get a hotel booking by ID
+GET /hotels/bookings/1
+{
+"id": "1",
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"hotel": {
+"id": "1",
+"name": "Hilton",
+"city": "New York",
+"address": "123 Main St",
+"price": 150
+},
+"totalPrice": 150
+}
+
+// Get all car rentals
+GET /cars
+[
+{
+"id": "1",
+"make": "Toyota",
+"model": "Corolla",
+"year": "2021",
+"location": "New York",
+"price": 50
+},
+{
+"id": "2",
+"make": "Honda",
+"model": "Civic",
+"year": "2022",
+"location": "Los Angeles",
+"price": 60
+},
+// ...
+]
+
+// Rent a car
+POST /cars/rent
+{
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"carId": "1",
+"startDate": "2023-04-20T00:00:00.000Z",
+"endDate": "2023-04-25T00:00:00.000Z"
+}
+
+// Get all car rentals
+GET /cars/rentals
+[
+{
+"id": "1",
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"car": {
+"id": "1",
+"make": "Toyota",
+"model": "Corolla",
+"year": "2021",
+"location": "New York",
+"price": 50
+},
+"startDate": "2023-04-20T00:00:00.000Z",
+"endDate": "2023-04-25T00:00:00.000Z",
+"totalPrice": 250
+},
+{
+"id": "2",
+"customerName": "Jane Doe",
+"customerEmail": "jane@example.com",
+"car": {
+"id": "2",
+"make": "Honda",
+"model": "Civic",
+"year": "2022",
+"location": "Los Angeles",
+"price": 60
+},
+"startDate": "2023-04-25T00:00:00.000Z",
+"endDate": "2023-04-30T00:00:00.000Z",
+"totalPrice": 300
+},
+// ...
+]
+
+// Get a car rental by ID
+GET /cars/rentals/1
+{
+"id": "1",
+"customerName": "John Doe",
+"customerEmail": "john@example.com",
+"car": {
+"id": "1",
+"make": "Toyota",
+"model": "Corolla",
+"year": "2021",
+"location": "New York",
+"price": 50
+},
+"startDate": "2023-04-20T00:00:00.000Z",
+"endDate": "2023-04-25T00:00:00.000Z",
+"totalPrice": 250
+}
